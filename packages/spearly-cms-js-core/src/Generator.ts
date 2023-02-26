@@ -106,7 +106,7 @@ export class SpearlyJSGenerator {
             if (templateHtml.includes("cms-loop")) {
                 templateHtml = await this.generateSubLoop(templateHtml)
             }
-            const result = await this.client.getList(contentType)
+            const result = await this.client.getList(contentType, { limit: 30, orders: { created_at: "desc" } })
             let resultHtml = ""
             result.data.forEach(c => {
                 const replacementArray = getFieldsValuesDefinitions(c.attributes.fields.data, variableName  || contentType, 2, true, this.options.dateFormatter);
@@ -123,8 +123,7 @@ export class SpearlyJSGenerator {
         try {
             const generatedContents: GeneratedContent[] = []
             // TODO: fix props params
-            const result = await this.client.getList(contentType, { limit: 30 })
-            console.log(result)
+            const result = await this.client.getList(contentType, { limit: 30, orders: { created_at: "desc" } })
             result.data.forEach(c => {
                 const replacementArray = getFieldsValuesDefinitions(c.attributes.fields.data, contentType, 2, true, this.options.dateFormatter)
 
