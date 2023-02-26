@@ -95,9 +95,9 @@ async function parseElements(state: State, nodes: Element[]) {
     ) {
       const contentType = node.getAttribute("cms-content-type")
       const contentId   = node.getAttribute("cms-content")
-      node.removeAttribute("cms-content-type")
       node.removeAttribute("cms-content")
       const generatedStr = await jsGenerator.generateContent(node.outerHTML, contentType, contentId)
+      node.removeAttribute("cms-content-type")
       const generatedNode = parse(generatedStr) as Element
       res.appendChild(generatedNode)
       continue
@@ -300,7 +300,7 @@ async function bundle(): Promise<boolean> {
       assetsFiles: [],
     },
   }
-  
+
   jsGenerator = new SpearlyJSGenerator(Settings.spearlyAuthKey, Settings.apiDomain)
 
   // Hook API: beforeBuild
