@@ -126,6 +126,7 @@ async function generateAliasPagesFromPagesList(state: State): Promise<Component[
     const targetElement = page.node.querySelector("[cms-item]")
     if (page.fname.includes("[alias]") && targetElement) {
       const contentId = targetElement.getAttribute("cms-content-type")
+      console.log(contentId)
       const generatedContents = await jsGenerator.generateEachContentFromList(targetElement.innerHTML, contentId)
       generatedContents.forEach(c => {
         targetElement.innerHTML = c.generatedHtml
@@ -184,6 +185,7 @@ async function parsePages(state: State, dirPath: string, relatePath = "") {
       const node = parse(minified) as Element
 
       console.log(`  [Page]: ${fname}(/${relatePath})`)
+      console.log(">>>>>>>>>")
       state.pagesList.push({ fname: `${relatePath}/${fname}`, tagName, rawData, node, props: {} })
     }
   }

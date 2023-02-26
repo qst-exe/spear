@@ -124,6 +124,7 @@ export class SpearlyJSGenerator {
             const generatedContents: GeneratedContent[] = []
             // TODO: fix props params
             const result = await this.client.getList(contentType, { limit: 30 })
+            console.log(result)
             result.data.forEach(c => {
                 const replacementArray = getFieldsValuesDefinitions(c.attributes.fields.data, contentType, 2, true, this.options.dateFormatter)
 
