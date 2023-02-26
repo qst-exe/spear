@@ -18,3 +18,4 @@ asd
 .vscode/*
 !.vscode/extensions.json
 *.tsbuildinfo
+.idea/*

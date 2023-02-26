@@ -45,7 +45,7 @@ export class SpearlyJSGenerator {
 
         const linkMatchResult = templateHtml.match("{%.*_#link %}")
         if (!!linkMatchResult && linkMatchResult.length > 0) {
-            result = result.split(linkMatchResult[0]).join("./" + this.options.linkBaseUrl + "?contentId=" + alias);                
+            result = result.split(linkMatchResult[0]).join("./" + this.options.linkBaseUrl + "?contentId=" + alias);
         }
 
         const aliasMatchResult = templateHtml.match("{%.*_#alias %}")
@@ -88,7 +88,7 @@ export class SpearlyJSGenerator {
             }
             if (node.childNodes.length > 0) {
                 node.childNodes = await this.traverseInjectionSubLoop(node.childNodes as HTMLElement[])
-            } 
+            }
             resultNode.appendChild(node)
         }
         return resultNode.childNodes
@@ -106,7 +106,7 @@ export class SpearlyJSGenerator {
             if (templateHtml.includes("cms-loop")) {
                 templateHtml = await this.generateSubLoop(templateHtml)
             }
-            const result = await this.client.getList(contentType)
+            const result = await this.client.getList(contentType, { limit: 30, orders: { created_at: "desc" } })
             let resultHtml = ""
             result.data.forEach(c => {
                 const replacementArray = getFieldsValuesDefinitions(c.attributes.fields.data, variableName  || contentType, 2, true, this.options.dateFormatter);
@@ -122,7 +122,8 @@ export class SpearlyJSGenerator {
     async generateEachContentFromList(templateHtml: string, contentType: string) : Promise<GeneratedContent[]> {
         try {
             const generatedContents: GeneratedContent[] = []
-            const result = await this.client.getList(contentType)
+            // TODO: fix props params
+            const result = await this.client.getList(contentType, { limit: 30, orders: { created_at: "desc" } })
             result.data.forEach(c => {
                 const replacementArray = getFieldsValuesDefinitions(c.attributes.fields.data, contentType, 2, true, this.options.dateFormatter)
 

@@ -99,7 +99,7 @@
 
 "@spearly/cms-js-core@^1.0.5":
   version "1.0.5"
-  resolved "https://registry.npmjs.org/@spearly/cms-js-core/-/cms-js-core-1.0.5.tgz"
+  resolved "https://registry.yarnpkg.com/@spearly/cms-js-core/-/cms-js-core-1.0.5.tgz#363e3807fd92ffbf6aa36ad2299fa39e792da0a3"
   integrity sha512-dCrHerOmkBZ53nEjXvO7rrWswJ/ismlO57u4OoImziWIeezL3wabw6s03lSIjj2N6xC+BKGMRfHUf+1vvhkejQ==
   dependencies:
     "@spearly/sdk-js" "^1.0.0"
