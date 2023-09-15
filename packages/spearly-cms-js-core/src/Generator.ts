@@ -135,6 +135,7 @@ export class SpearlyJSGenerator {
                         }
                         : {}
                 );
+            console.log(result)
             const replacementArray = getFieldsValuesDefinitions(result.attributes.fields.data, contentType, 2, true, this.options.dateFormatter);
             const uid = result.attributes.publicUid;
             const patternName = result.attributes.patternName;
